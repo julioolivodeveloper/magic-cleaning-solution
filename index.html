@@ -292,25 +292,68 @@
     @media (max-width:768px){ .why-grid { grid-template-columns:1fr; } }
 
     .why-visual {
-      position: relative; display: flex; justify-content: center;
+      position: relative; display: flex; justify-content: center; align-items: center;
+      min-height: 420px;
     }
-    .why-circle {
-      width: 320px; height: 320px; border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, rgba(14,165,233,.25), rgba(6,182,212,.12) 60%, transparent);
-      border: 2px solid rgba(14,165,233,.2);
+
+    /* Central illustration panel */
+    .why-panel {
+      width: 300px; height: 300px; border-radius: 28px;
+      background: linear-gradient(145deg, rgba(14,165,233,.18) 0%, rgba(6,182,212,.1) 50%, rgba(16,185,129,.08) 100%);
+      border: 1.5px solid rgba(14,165,233,.25);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 20px 60px rgba(14,165,233,.15), inset 0 1px 0 rgba(255,255,255,.06);
+      position: relative; overflow: hidden;
+    }
+    .why-panel::before {
+      content:''; position:absolute; top:-60px; right:-60px;
+      width:200px; height:200px; border-radius:50%;
+      background: radial-gradient(circle, rgba(14,165,233,.2), transparent 70%);
+    }
+    .why-panel-icon {
+      width: 80px; height: 80px; border-radius: 20px;
+      background: linear-gradient(135deg, rgba(14,165,233,.3), rgba(6,182,212,.2));
       display: flex; align-items: center; justify-content: center;
-      font-size: 7rem;
-      animation: rotateSlow 20s linear infinite;
-      box-shadow: 0 0 60px rgba(14,165,233,.15), inset 0 0 40px rgba(14,165,233,.08);
+      box-shadow: 0 8px 24px rgba(14,165,233,.3);
     }
+    .why-panel-icon svg { width: 42px; height: 42px; }
+    .why-panel-title { font-size: 1rem; font-weight: 700; color: #fff; }
+    .why-panel-sub   { font-size: .82rem; color: #7dd3fc; text-align: center; padding: 0 20px; }
+
+    /* Floating mini-cards */
+    .why-badge {
+      position: absolute;
+      background: rgba(12,26,46,.9);
+      border: 1px solid rgba(14,165,233,.3);
+      border-radius: 14px; padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      backdrop-filter: blur(12px);
+      animation: badgeFloat 4s ease-in-out infinite;
+      white-space: nowrap;
+    }
+    .why-badge:nth-child(2) { top: 10px;  left: -20px;  animation-delay: 0s; }
+    .why-badge:nth-child(3) { top: 10px;  right: -20px; animation-delay: 1s; animation-duration: 5s; }
+    .why-badge:nth-child(4) { bottom: 30px; left: -10px; animation-delay: 2s; animation-duration: 4.5s; }
+    .why-badge:nth-child(5) { bottom: 30px; right: -10px;animation-delay: .5s; animation-duration: 3.8s; }
+
+    @keyframes badgeFloat {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    .why-badge-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .why-badge-icon svg { width: 18px; height: 18px; }
+    .why-badge strong { display:block; color:#fff; font-size:.88rem; font-weight:700; line-height:1.1; }
+    .why-badge span   { font-size:.72rem; color:#7dd3fc; }
+
     @keyframes rotateSlow {
       from { transform: rotate(0deg); }
       to   { transform: rotate(360deg); }
-    }
-    .why-center-icon {
-      position: absolute; top:50%; left:50%; transform: translate(-50%,-50%);
-      font-size: 4.5rem;
-      animation: rotateSlow 20s linear infinite reverse;
     }
 
     .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
@@ -525,12 +568,6 @@
     </a>
   </div>
 
-  <div class="stats">
-    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Clientes Felices</div></div>
-    <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Años de Experiencia</div></div>
-    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Eco-Amigable</div></div>
-    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Calificación</div></div>
-  </div>
 </section>
 
 <!-- SERVICES -->
@@ -607,12 +644,57 @@
   <div class="why-grid">
 
     <div class="why-visual reveal">
-      <div class="why-circle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(56,189,248,.6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width:90px;height:90px"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+
+      <!-- Floating badge: Eco -->
+      <div class="why-badge">
+        <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(16,185,129,.35),rgba(6,182,212,.2))">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+        </div>
+        <div><strong>100% Ecológico</strong><span>Productos biodegradables</span></div>
       </div>
-      <div class="why-center-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:60px;height:60px"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.065-4.677A4 4 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.065-4.677A4 4 0 0 0 14.5 2Z"/></svg>
+
+      <!-- Floating badge: Seguridad -->
+      <div class="why-badge">
+        <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(14,165,233,.35),rgba(6,182,212,.2))">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div><strong>Personal Verificado</strong><span>Antecedentes limpios</span></div>
       </div>
+
+      <!-- Central panel -->
+      <div class="why-panel">
+        <div class="why-panel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1V9.5"/><path d="M10 21v-6h4v6"/></svg>
+        </div>
+        <div class="why-panel-title">Magic Cleaning Solution</div>
+        <div class="why-panel-sub">Limpieza residencial y comercial con calidad garantizada</div>
+        <!-- Star row -->
+        <div style="display:flex;gap:4px;margin-top:6px;">
+          <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div style="font-size:.75rem;color:#7dd3fc;margin-top:2px;">Calificación 5 estrellas</div>
+      </div>
+
+      <!-- Floating badge: Puntualidad -->
+      <div class="why-badge">
+        <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(6,182,212,.35),rgba(14,165,233,.2))">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div><strong>Puntualidad</strong><span>Llegamos a tiempo</span></div>
+      </div>
+
+      <!-- Floating badge: Garantía -->
+      <div class="why-badge">
+        <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(139,92,246,.35),rgba(14,165,233,.2))">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div><strong>Garantía Total</strong><span>Satisfacción asegurada</span></div>
+      </div>
+
     </div>
 
     <div>
