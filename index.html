@@ -31,7 +31,7 @@
 
     /* ─── Floating particles ─── */
     #particles {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      position: fixed; inset: 0; pointer-events: none; z-index: 3;
     }
     .particle {
       position: absolute;
@@ -104,9 +104,53 @@
       text-align: center;
       padding: 120px 6% 80px;
       position: relative;
-      background: radial-gradient(ellipse at 50% 60%, rgba(6,182,212,.18) 0%, transparent 70%),
-                  radial-gradient(ellipse at 80% 20%, rgba(14,165,233,.12) 0%, transparent 60%);
+      overflow: hidden;
+      background: var(--dark);
     }
+
+    /* Slideshow de fondo */
+    .hero-slideshow {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0;
+      animation: slideShow 24s linear infinite;
+      will-change: opacity, transform;
+    }
+    .hero-slide:nth-child(1) { animation-delay: 0s;   background-image: url('img1.jpg'); }
+    .hero-slide:nth-child(2) { animation-delay: 6s;   background-image: url('img2.jpg'); }
+    .hero-slide:nth-child(3) { animation-delay: 12s;  background-image: url('img3.jpg'); }
+    .hero-slide:nth-child(4) { animation-delay: 18s;  background-image: url('img4.jpg'); }
+
+    @keyframes slideShow {
+      0%          { opacity:0;   transform: scale(1.08); }
+      4%          { opacity:1;   transform: scale(1.08); }
+      22%         { opacity:1;   transform: scale(1.0);  }
+      26%         { opacity:0;   transform: scale(1.0);  }
+      100%        { opacity:0;   transform: scale(1.08); }
+    }
+
+    /* Overlay oscuro sobre las imágenes */
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,15,28,.78) 0%,
+        rgba(12,26,46,.65) 50%,
+        rgba(8,15,28,.88) 100%
+      );
+    }
+    /* Tinte azul sutil encima */
+    .hero-overlay::after {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(6,182,212,.15) 0%, transparent 70%),
+                  radial-gradient(ellipse at 80% 20%, rgba(14,165,233,.1) 0%, transparent 60%);
+    }
+
+    /* Todo el contenido del hero va sobre z-index:2 */
+    .hero > *:not(.hero-slideshow):not(.hero-overlay) { position: relative; z-index: 2; }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -524,6 +568,16 @@
 
 <!-- HERO -->
 <section class="hero">
+
+  <!-- Slideshow de fondo -->
+  <div class="hero-slideshow">
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+  </div>
+  <div class="hero-overlay"></div>
+
   <!-- floating background icons -->
   <div class="hero-float" style="font-size:0">
     <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M3 22V12a9 9 0 1 1 18 0v10"/><path d="M5 22h14"/><path d="M9 22V12a3 3 0 0 1 6 0v10"/></svg>
