@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magic Cleaning Solution — Limpieza Residencial y Comercial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #0ea5e9;
+      --blue2:  #0284c7;
+      --teal:   #06b6d4;
+      --white:  #f0f9ff;
+      --dark:   #0c1a2e;
+      --mid:    #1e3a5f;
+      --accent: #38bdf8;
+      --green:  #10b981;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: #e0f2fe;
+      overflow-x: hidden;
+    }
+
+    /* ─── Floating particles ─── */
+    #particles {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .18;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) scale(.5); opacity: 0; }
+      10%  { opacity: .18; }
+      90%  { opacity: .18; }
+      100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 6%;
+      background: rgba(12,26,46,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(14,165,233,.2);
+      transition: background .3s;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.35rem; font-weight: 800; color: var(--white);
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 0 18px rgba(14,165,233,.5);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 18px rgba(14,165,233,.5); }
+      50%      { box-shadow: 0 0 32px rgba(14,165,233,.9); }
+    }
+
+    .logo span { color: var(--blue); }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: #bae6fd; text-decoration: none; font-size: .92rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; border: none; padding: 10px 22px;
+      border-radius: 50px; font-size: .9rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(14,165,233,.4);
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(14,165,233,.6); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 6% 80px;
+      position: relative;
+      background: radial-gradient(ellipse at 50% 60%, rgba(6,182,212,.18) 0%, transparent 70%),
+                  radial-gradient(ellipse at 80% 20%, rgba(14,165,233,.12) 0%, transparent 60%);
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(14,165,233,.15);
+      border: 1px solid rgba(14,165,233,.35);
+      border-radius: 50px; padding: 6px 18px;
+      font-size: .82rem; font-weight: 600; color: var(--accent);
+      margin-bottom: 28px;
+      animation: fadeDown .8s ease both;
+    }
+    .hero-badge svg { width: 14px; height: 14px; }
+
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900; line-height: 1.1;
+      color: #fff;
+      animation: fadeUp .9s ease .1s both;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      max-width: 600px; margin: 22px auto 40px;
+      font-size: 1.08rem; color: #7dd3fc; line-height: 1.7;
+      animation: fadeUp .9s ease .2s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp .9s ease .3s both;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; padding: 16px 36px; border-radius: 50px;
+      font-size: 1.05rem; font-weight: 700; text-decoration: none;
+      box-shadow: 0 6px 30px rgba(14,165,233,.5);
+      transition: transform .25s, box-shadow .25s;
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
+      opacity:0; transition: opacity .25s;
+    }
+    .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(14,165,233,.65); }
+    .btn-primary:hover::after { opacity:1; }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 2px solid rgba(14,165,233,.5);
+      color: var(--accent); padding: 16px 36px; border-radius: 50px;
+      font-size: 1.05rem; font-weight: 700; text-decoration: none;
+      transition: background .25s, transform .25s;
+    }
+    .btn-secondary:hover { background: rgba(14,165,233,.1); transform: translateY(-4px); }
+
+    /* ─── Floating cleaning icons in hero ─── */
+    .hero-float {
+      position: absolute; pointer-events: none;
+      font-size: 2.8rem; opacity: .12;
+      animation: floatIcon 6s ease-in-out infinite;
+    }
+    .hero-float:nth-child(1)  { top:15%; left:8%;  animation-delay:0s;    animation-duration:7s; }
+    .hero-float:nth-child(2)  { top:25%; right:7%; animation-delay:1.5s;  animation-duration:5s; }
+    .hero-float:nth-child(3)  { bottom:20%; left:5%; animation-delay:2s;  animation-duration:8s; }
+    .hero-float:nth-child(4)  { bottom:30%; right:6%; animation-delay:.8s; animation-duration:6s; }
+    .hero-float:nth-child(5)  { top:50%; left:3%; animation-delay:3s;    animation-duration:7s; }
+    .hero-float:nth-child(6)  { top:10%; left:40%; animation-delay:2.5s; animation-duration:5.5s; }
+
+    @keyframes floatIcon {
+      0%,100% { transform: translateY(0) rotate(-8deg); }
+      50%      { transform: translateY(-24px) rotate(8deg); }
+    }
+
+    /* Stats ribbon */
+    .stats {
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+      margin-top: 60px;
+      animation: fadeUp .9s ease .5s both;
+    }
+    .stat {
+      padding: 20px 40px;
+      border-right: 1px solid rgba(14,165,233,.2);
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 2.2rem; font-weight: 900; color: #fff;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: .82rem; color: #7dd3fc; font-weight: 500; }
+
+    /* ─── SERVICES ─── */
+    section { padding: 90px 6%; position: relative; z-index: 1; }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(14,165,233,.12);
+      border: 1px solid rgba(14,165,233,.3);
+      color: var(--accent); border-radius: 50px;
+      padding: 4px 16px; font-size: .8rem; font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    h2.section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; color: #fff; margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 1rem; color: #7dd3fc; max-width: 540px; line-height: 1.7;
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: rgba(30,58,95,.5);
+      border: 1px solid rgba(14,165,233,.18);
+      border-radius: 20px; padding: 36px 28px;
+      position: relative; overflow: hidden;
+      cursor: default;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .service-card::before {
+      content:'';
+      position: absolute; inset:0;
+      background: linear-gradient(135deg, rgba(14,165,233,.06), transparent 60%);
+      opacity:0; transition: opacity .3s;
+    }
+    .service-card:hover { transform: translateY(-8px); border-color: rgba(14,165,233,.5); box-shadow: 0 16px 40px rgba(14,165,233,.2); }
+    .service-card:hover::before { opacity:1; }
+
+    .service-icon-wrap {
+      width: 62px; height: 62px;
+      border-radius: 16px; margin-bottom: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.9rem;
+      transition: transform .3s;
+    }
+    .service-card:hover .service-icon-wrap { transform: scale(1.12) rotate(6deg); }
+
+    .ic-blue  { background: linear-gradient(135deg, rgba(14,165,233,.3), rgba(6,182,212,.2)); box-shadow: 0 4px 16px rgba(14,165,233,.25); }
+    .ic-teal  { background: linear-gradient(135deg, rgba(6,182,212,.3), rgba(16,185,129,.2)); box-shadow: 0 4px 16px rgba(6,182,212,.25); }
+    .ic-green { background: linear-gradient(135deg, rgba(16,185,129,.3), rgba(6,182,212,.2)); box-shadow: 0 4px 16px rgba(16,185,129,.25); }
+    .ic-purple{ background: linear-gradient(135deg, rgba(139,92,246,.3), rgba(14,165,233,.2)); box-shadow: 0 4px 16px rgba(139,92,246,.25); }
+
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .service-card p  { font-size: .9rem; color: #93c5fd; line-height: 1.65; }
+
+    .tag-new {
+      position: absolute; top: 16px; right: 16px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color:#fff; font-size:.7rem; font-weight:700;
+      padding: 3px 10px; border-radius:50px;
+    }
+
+    /* ─── WHY US ─── */
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center;
+    }
+    @media (max-width:768px){ .why-grid { grid-template-columns:1fr; } }
+
+    .why-visual {
+      position: relative; display: flex; justify-content: center;
+    }
+    .why-circle {
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, rgba(14,165,233,.25), rgba(6,182,212,.12) 60%, transparent);
+      border: 2px solid rgba(14,165,233,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem;
+      animation: rotateSlow 20s linear infinite;
+      box-shadow: 0 0 60px rgba(14,165,233,.15), inset 0 0 40px rgba(14,165,233,.08);
+    }
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .why-center-icon {
+      position: absolute; top:50%; left:50%; transform: translate(-50%,-50%);
+      font-size: 4.5rem;
+      animation: rotateSlow 20s linear infinite reverse;
+    }
+
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .why-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 20px;
+      background: rgba(30,58,95,.4);
+      border: 1px solid rgba(14,165,233,.15);
+      border-radius: 14px;
+      transition: transform .25s, border-color .25s;
+    }
+    .why-item:hover { transform: translateX(6px); border-color: rgba(14,165,233,.4); }
+    .why-dot {
+      width: 38px; height: 38px; border-radius: 10px; flex-shrink:0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, rgba(14,165,233,.25), rgba(6,182,212,.15));
+    }
+    .why-item h4 { font-size: .97rem; font-weight: 700; color:#fff; margin-bottom:4px; }
+    .why-item p  { font-size: .85rem; color: #7dd3fc; line-height: 1.5; }
+
+    /* ─── PROCESS ─── */
+    .process-section { background: rgba(14,165,233,.04); border-top: 1px solid rgba(14,165,233,.1); border-bottom: 1px solid rgba(14,165,233,.1); }
+
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; position: relative;
+    }
+    .steps::before {
+      content:'';
+      position:absolute; top:48px; left:10%; right:10%; height:2px;
+      background: linear-gradient(90deg, transparent, var(--blue), var(--teal), transparent);
+      opacity:.35;
+    }
+    @media(max-width:640px){ .steps::before { display:none; } }
+
+    .step {
+      text-align: center; padding: 30px 20px;
+      position: relative;
+      transition: transform .3s;
+    }
+    .step:hover { transform: translateY(-8px); }
+
+    .step-num {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; font-size: 1.4rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+      box-shadow: 0 6px 24px rgba(14,165,233,.4);
+      position: relative; z-index: 1;
+    }
+    .step-icon { font-size: 2rem; margin-bottom: 14px; }
+    .step h4 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .step p  { font-size: .85rem; color: #7dd3fc; line-height: 1.55; }
+
+    /* ─── CONTACT / CTA ─── */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(14,165,233,.12) 0%, rgba(6,182,212,.08) 50%, rgba(16,185,129,.06) 100%);
+      border-top: 1px solid rgba(14,165,233,.15);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900; color: #fff; margin-bottom: 16px;
+    }
+    .cta-section p { color: #7dd3fc; font-size: 1.05rem; margin-bottom: 40px; }
+
+    .contact-cards {
+      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .contact-card {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(30,58,95,.6);
+      border: 1px solid rgba(14,165,233,.25);
+      border-radius: 16px; padding: 18px 28px;
+      text-decoration: none; color: inherit;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .contact-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(14,165,233,.3); border-color: var(--blue); }
+    .contact-card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .cc-phone { background: linear-gradient(135deg, rgba(14,165,233,.3), rgba(6,182,212,.2)); }
+    .cc-msg   { background: linear-gradient(135deg, rgba(16,185,129,.3), rgba(6,182,212,.2)); }
+    .cc-email { background: linear-gradient(135deg, rgba(139,92,246,.3), rgba(14,165,233,.2)); }
+
+    .contact-card-text strong { display:block; color:#fff; font-size:1.05rem; font-weight:700; }
+    .contact-card-text span   { font-size:.82rem; color:#7dd3fc; }
+
+    .big-phone {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff; padding: 20px 48px; border-radius: 60px;
+      font-size: 1.6rem; font-weight: 900; text-decoration: none;
+      box-shadow: 0 8px 40px rgba(14,165,233,.5);
+      animation: phonePulse 2.5s ease-in-out infinite;
+      transition: transform .25s;
+    }
+    .big-phone:hover { transform: scale(1.04); }
+    @keyframes phonePulse {
+      0%,100% { box-shadow: 0 8px 40px rgba(14,165,233,.5); }
+      50%      { box-shadow: 0 8px 60px rgba(14,165,233,.85); }
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: rgba(8,15,28,.9);
+      border-top: 1px solid rgba(14,165,233,.12);
+      text-align: center; padding: 32px 6%;
+      color: #4b7fa3; font-size: .85rem;
+    }
+    footer strong { color: var(--accent); }
+
+    /* ─── Scroll reveal ─── */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ─── Responsive nav ─── */
+    @media(max-width:700px){
+      .nav-links { display:none; }
+      .stats { gap:0; }
+      .stat { padding: 16px 20px; }
+    }
+
+    /* ─── Shine sweep on cards ─── */
+    @keyframes shine {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating particles -->
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">✨</div>
+    <div>Magic <span>Cleaning</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="tel:6504861294" class="nav-cta">📞 Llámanos</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- floating background icons -->
+  <div class="hero-float">🧹</div>
+  <div class="hero-float">🫧</div>
+  <div class="hero-float">🪣</div>
+  <div class="hero-float">🧽</div>
+  <div class="hero-float">✨</div>
+  <div class="hero-float">🧴</div>
+
+  <div class="hero-badge">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Limpieza Residencial &amp; Comercial de Confianza
+  </div>
+
+  <h1>
+    La Limpieza Perfecta,<br/>
+    <span class="gradient-text">Sin Esfuerzo de tu Parte</span>
+  </h1>
+
+  <p>
+    Transformamos cada espacio en un ambiente impecable. Hogares, oficinas y locales comerciales — dejamos todo brillando con productos ecológicos y equipo profesional.
+  </p>
+
+  <div class="hero-btns">
+    <a href="tel:6504861294" class="btn-primary">
+      📞 &nbsp;(650) 486-1294
+    </a>
+    <a href="#servicios" class="btn-secondary">
+      Ver Servicios &nbsp;→
+    </a>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Clientes Felices</div></div>
+    <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Años de Experiencia</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Eco-Amigable</div></div>
+    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Calificación</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="reveal">
+    <div class="section-tag">Nuestros Servicios</div>
+    <h2 class="section-title">Lo Que Hacemos por Ti</h2>
+    <p class="section-sub">Cobertura completa para que tu espacio siempre esté en perfectas condiciones.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-icon-wrap ic-blue">🏠</div>
+      <h3>Limpieza Residencial</h3>
+      <p>Limpieza profunda de hogares: cocina, baños, dormitorios y áreas comunes. Servicio regular o por evento.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon-wrap ic-teal">🏢</div>
+      <h3>Limpieza Comercial</h3>
+      <p>Oficinas, tiendas y locales. Mantenemos tu negocio presentable para clientes y empleados.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon-wrap ic-green">🪟</div>
+      <h3>Lavado de Ventanas</h3>
+      <p>Vidrios interiores y exteriores impecables. Incluye marcos y tracks. Para edificios de 1 a 3 pisos.</p>
+      <span class="tag-new">Popular</span>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon-wrap ic-purple">🛋️</div>
+      <h3>Limpieza de Tapicería</h3>
+      <p>Sofás, alfombras y muebles. Eliminamos manchas, olores y alérgenos con equipo especializado.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon-wrap ic-blue">🧪</div>
+      <h3>Desinfección Profunda</h3>
+      <p>Sanitización de superficies de alto contacto. Ideal post-COVID, para clínicas y guarderías.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon-wrap ic-teal">🏗️</div>
+      <h3>Post-Construcción</h3>
+      <p>Removemos polvo de construcción, pintura y escombros. Dejamos el espacio listo para habitar.</p>
+      <span class="tag-new">Nuevo</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="nosotros">
+  <div class="why-grid">
+
+    <div class="why-visual reveal">
+      <div class="why-circle">🫧</div>
+      <div class="why-center-icon">✨</div>
+    </div>
+
+    <div>
+      <div class="section-tag reveal">¿Por Qué Elegirnos?</div>
+      <h2 class="section-title reveal">Calidad Que Puedes Ver y Sentir</h2>
+      <ul class="why-list">
+        <li class="why-item reveal">
+          <div class="why-dot">🌿</div>
+          <div>
+            <h4>Productos Ecológicos</h4>
+            <p>Usamos productos biodegradables que cuidan tu familia, mascotas y el medio ambiente.</p>
+          </div>
+        </li>
+        <li class="why-item reveal">
+          <div class="why-dot">🛡️</div>
+          <div>
+            <h4>Personal Verificado</h4>
+            <p>Todo nuestro equipo pasa verificación de antecedentes. Tu seguridad es nuestra prioridad.</p>
+          </div>
+        </li>
+        <li class="why-item reveal">
+          <div class="why-dot">⏰</div>
+          <div>
+            <h4>Puntuales y Confiables</h4>
+            <p>Llegamos a tiempo, siempre. Si no quedas satisfecho, regresamos sin costo adicional.</p>
+          </div>
+        </li>
+        <li class="why-item reveal">
+          <div class="why-dot">💰</div>
+          <div>
+            <h4>Precios Transparentes</h4>
+            <p>Sin costos ocultos. Presupuesto gratuito y cotización clara antes de comenzar.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proceso" class="process-section">
+  <div style="text-align:center" class="reveal">
+    <div class="section-tag">Cómo Funciona</div>
+    <h2 class="section-title">4 Simples Pasos</h2>
+    <p class="section-sub" style="margin: 0 auto 56px;">Reservar tu limpieza es fácil y rápido.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div class="step-icon">📞</div>
+      <h4>Llámanos o Escribe</h4>
+      <p>Contáctanos por teléfono o mensaje. Respondemos en menos de 1 hora.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <div class="step-icon">📋</div>
+      <h4>Cotización Gratis</h4>
+      <p>Te damos un precio claro basado en el tamaño y tipo de limpieza que necesitas.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <div class="step-icon">🗓️</div>
+      <h4>Agenda tu Cita</h4>
+      <p>Elegimos el día y hora que más te convengan. Flexibilidad total.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">4</div>
+      <div class="step-icon">✨</div>
+      <h4>¡Disfruta el Resultado!</h4>
+      <p>Nuestro equipo llega y hace la magia. Tú solo relájate y disfruta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / CTA -->
+<section id="contacto" class="cta-section">
+  <div class="reveal">
+    <div class="section-tag">Contacto</div>
+    <h2>¿Listo para un Espacio <span style="background:linear-gradient(90deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Impecable?</span></h2>
+    <p>Llámanos hoy mismo y obtén un presupuesto gratis. Sin compromisos.</p>
+  </div>
+
+  <div class="contact-cards reveal">
+    <a href="tel:6504861294" class="contact-card">
+      <div class="contact-card-icon cc-phone">📞</div>
+      <div class="contact-card-text">
+        <strong>(650) 486-1294</strong>
+        <span>Llama ahora — disponible hoy</span>
+      </div>
+    </a>
+    <a href="sms:6504861294" class="contact-card">
+      <div class="contact-card-icon cc-msg">💬</div>
+      <div class="contact-card-text">
+        <strong>Envía un Mensaje</strong>
+        <span>Respondemos en menos de 1 hora</span>
+      </div>
+    </a>
+    <a href="mailto:info@magiccleaningsolution.com" class="contact-card">
+      <div class="contact-card-icon cc-email">📧</div>
+      <div class="contact-card-text">
+        <strong>Envía un Email</strong>
+        <span>info@magiccleaningsolution.com</span>
+      </div>
+    </a>
+  </div>
+
+  <a href="tel:6504861294" class="big-phone reveal">
+    📞 &nbsp;(650) 486-1294
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:6px;">
+    <strong>Magic Cleaning Solution</strong> — Limpieza Residencial y Comercial
+  </p>
+  <p>📍 Bay Area, California &nbsp;|&nbsp; 📞 (650) 486-1294 &nbsp;|&nbsp; © 2025 Todos los derechos reservados.</p>
+</footer>
+
+<script>
+/* ── Particles canvas ── */
+(function(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resize(){
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const COLORS = ['#0ea5e9','#06b6d4','#38bdf8','#10b981','#7dd3fc'];
+
+  function spawn(){
+    return {
+      x: Math.random() * canvas.width,
+      y: canvas.height + 20,
+      r: 2 + Math.random() * 5,
+      speed: 0.4 + Math.random() * 0.8,
+      color: COLORS[Math.floor(Math.random()*COLORS.length)],
+      alpha: 0,
+      maxAlpha: .12 + Math.random()*.12,
+      drift: (Math.random()-.5)*.4,
+      life: 0,
+      maxLife: 400 + Math.random()*400,
+    };
+  }
+
+  for(let i=0;i<60;i++){
+    const p = spawn();
+    p.y = Math.random()*canvas.height;
+    p.life = Math.random()*p.maxLife;
+    particles.push(p);
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach((p,i)=>{
+      p.life++;
+      p.y -= p.speed;
+      p.x += p.drift;
+      const t = p.life/p.maxLife;
+      p.alpha = t < .1 ? p.maxAlpha*(t/.1) : t > .85 ? p.maxAlpha*((1-t)/.15) : p.maxAlpha;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      if(p.life >= p.maxLife) particles[i] = spawn();
+    });
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); }
+  });
+},{threshold:.12});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── Staggered delay for cards ── */
+document.querySelectorAll('.services-grid .service-card').forEach((c,i)=>{
+  c.style.transitionDelay = (i*0.1)+'s';
+});
+document.querySelectorAll('.why-item').forEach((c,i)=>{
+  c.style.transitionDelay = (i*0.1)+'s';
+});
+document.querySelectorAll('.step').forEach((c,i)=>{
+  c.style.transitionDelay = (i*0.1)+'s';
+});
+</script>
+</body>
+</html>
