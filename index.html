@@ -489,7 +489,60 @@
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media(max-width:700px){ .nav-links { display:none; } }
+    /* ─── MOBILE ─── */
+    @media(max-width:700px){
+      .nav-links { display:none; }
+
+      /* Nav: compact */
+      nav { padding: 10px 5%; }
+      .logo { font-size: 1.1rem; }
+      .logo-icon { width: 36px; height: 36px; }
+      .nav-cta { padding: 9px 16px; font-size: .82rem; }
+      .lang-toggle { padding: 4px 5px; }
+      .lang-btn { padding: 3px 8px; font-size: .72rem; }
+
+      /* Hero: remove excess top space */
+      .hero { padding: 74px 5% 50px; min-height: 100svh; }
+      .hero-float { display: none; }    /* hide decorative icons on mobile */
+      .hero-badge { font-size: .75rem; padding: 5px 14px; margin-bottom: 18px; }
+      .hero h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
+      .hero p   { font-size: .95rem; margin: 16px auto 28px; }
+      .btn-primary, .btn-secondary { padding: 14px 24px; font-size: .95rem; }
+
+      /* Services */
+      section { padding: 60px 5%; }
+      .services-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      /* Why us — stack vertically on mobile */
+      .why-grid { grid-template-columns: 1fr; gap: 32px; }
+      .why-visual {
+        grid-template-areas: "tl tr" "panel panel" "bl br";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 12px;
+      }
+      .why-panel { grid-area: panel; grid-row: auto; width: 100%; height: auto; padding: 24px 16px; }
+      .wb-tl, .wb-tr, .wb-bl, .wb-br { justify-self: stretch; }
+
+      /* Process */
+      .steps { grid-template-columns: 1fr 1fr; }
+
+      /* Contact */
+      .contact-cards { flex-direction: column; align-items: center; }
+      .contact-card  { width: 100%; max-width: 340px; }
+      .big-phone { font-size: 1.2rem; padding: 16px 32px; }
+
+      /* Footer */
+      footer { font-size: .78rem; padding: 24px 5%; }
+    }
+
+    @media(max-width:420px){
+      .hero h1 { font-size: 1.9rem; }
+      .steps { grid-template-columns: 1fr; }
+      .why-visual {
+        grid-template-areas: "tl tr" "panel panel" "bl br";
+      }
+    }
   </style>
 </head>
 <body>
