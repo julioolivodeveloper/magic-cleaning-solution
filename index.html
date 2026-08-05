@@ -487,6 +487,78 @@
     .step h4 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
     .step p  { font-size: .85rem; color: #7dd3fc; line-height: 1.55; }
 
+    /* ─── SERVICE AREAS ─── */
+    .areas-section { background: rgba(6,182,212,.04); }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 0;
+    }
+
+    .area-card {
+      background: rgba(30,58,95,.5);
+      border: 1px solid rgba(14,165,233,.18);
+      border-radius: 20px; padding: 32px 20px 28px;
+      text-align: center; cursor: default;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      position: relative; overflow: hidden;
+    }
+    .area-card::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(14,165,233,.08), transparent 60%);
+      opacity:0; transition: opacity .3s;
+    }
+    .area-card:hover { transform: translateY(-8px); border-color: rgba(14,165,233,.5); box-shadow: 0 16px 40px rgba(14,165,233,.2); }
+    .area-card:hover::before { opacity:1; }
+
+    .area-pin {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(14,165,233,.25), rgba(6,182,212,.15));
+      border: 1.5px solid rgba(14,165,233,.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      transition: transform .3s, box-shadow .3s;
+      box-shadow: 0 4px 16px rgba(14,165,233,.2);
+    }
+    .area-card:hover .area-pin {
+      transform: scale(1.12);
+      box-shadow: 0 8px 28px rgba(14,165,233,.4);
+    }
+    .area-pin svg { width: 26px; height: 26px; }
+
+    .area-name {
+      font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 4px;
+    }
+    .area-tag {
+      font-size: .78rem; color: #7dd3fc;
+    }
+
+    /* Pulse dot on each card */
+    .area-dot {
+      position: absolute; top: 14px; right: 14px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(16,185,129,.6);
+      animation: areaPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes areaPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(16,185,129,.6); }
+      70%  { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+
+    /* Also pulse each card at different times */
+    .area-card:nth-child(2) .area-dot { animation-delay: .5s; }
+    .area-card:nth-child(3) .area-dot { animation-delay: 1s; }
+    .area-card:nth-child(4) .area-dot { animation-delay: 1.5s; }
+    .area-card:nth-child(5) .area-dot { animation-delay: 2s; }
+
+    @media(max-width:700px){
+      .areas-grid { grid-template-columns: 1fr 1fr; }
+    }
+
     /* ─── CONTACT ─── */
     .cta-section {
       text-align: center;
@@ -878,6 +950,73 @@
   </div>
 </section>
 
+<!-- SERVICE AREAS -->
+<section id="areas" class="areas-section">
+  <div class="reveal" style="text-align:center">
+    <div class="section-tag" data-i18n="areas.tag">Service Areas</div>
+    <h2 class="section-title" data-i18n="areas.title">We Serve the Bay Area</h2>
+    <p class="section-sub" style="margin:0 auto 48px;" data-i18n="areas.sub">Proudly serving these Peninsula communities with top-quality cleaning.</p>
+  </div>
+
+  <div class="areas-grid">
+
+    <div class="area-card reveal">
+      <div class="area-dot"></div>
+      <div class="area-pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="area-name">Atherton</div>
+      <div class="area-tag" data-i18n="area.residential">Residential</div>
+    </div>
+
+    <div class="area-card reveal">
+      <div class="area-dot"></div>
+      <div class="area-pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="area-name">Palo Alto</div>
+      <div class="area-tag" data-i18n="area.both">Residential & Commercial</div>
+    </div>
+
+    <div class="area-card reveal">
+      <div class="area-dot"></div>
+      <div class="area-pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="area-name">Menlo Park</div>
+      <div class="area-tag" data-i18n="area.both">Residential & Commercial</div>
+    </div>
+
+    <div class="area-card reveal">
+      <div class="area-dot"></div>
+      <div class="area-pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="area-name">Sunnyvale</div>
+      <div class="area-tag" data-i18n="area.both">Residential & Commercial</div>
+    </div>
+
+    <div class="area-card reveal">
+      <div class="area-dot"></div>
+      <div class="area-pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="area-name">Mountain View</div>
+      <div class="area-tag" data-i18n="area.both">Residential & Commercial</div>
+    </div>
+
+  </div>
+
+  <!-- CTA banner -->
+  <div class="reveal" style="text-align:center;margin-top:48px;">
+    <p style="color:#7dd3fc;font-size:.95rem;margin-bottom:16px;" data-i18n="areas.nearby">Not in the list? Contact us — we may cover your area too.</p>
+    <a href="tel:6504861294" class="btn-primary" style="display:inline-flex;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span data-i18n="areas.cta">Check Your Area</span>
+    </a>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="cta-section">
   <div class="reveal">
@@ -960,6 +1099,9 @@ const T = {
     'step4.title':'Enjoy the Results!','step4.desc':'Our team arrives and works the magic. You just sit back and relax.',
     'cta.tag':'Contact','cta.title':'Ready for a ','cta.highlight':'Spotless Space?','cta.sub':'Call us today and get a free estimate. No commitments.',
     'cc1.sub':'Call now — available today','cc2.title':'Send a Text','cc2.sub':'We reply in under 1 hour','cc3.title':'WhatsApp','cc3.sub':'Chat with us now',
+    'areas.tag':'Service Areas','areas.title':'We Serve the Bay Area','areas.sub':'Proudly serving these Peninsula communities with top-quality cleaning.',
+    'area.residential':'Residential','area.both':'Residential &amp; Commercial',
+    'areas.nearby':'Not in the list? Contact us — we may cover your area too.','areas.cta':'Check Your Area',
     'footer.tagline':'Residential & Commercial Cleaning','footer.copy':'© 2025 All rights reserved.'
   },
   es: {
@@ -993,6 +1135,9 @@ const T = {
     'step4.title':'¡Disfruta el Resultado!','step4.desc':'Nuestro equipo llega y hace la magia. Tú solo relájate y disfruta.',
     'cta.tag':'Contacto','cta.title':'¿Listo para un Espacio ','cta.highlight':'Impecable?','cta.sub':'Llámanos hoy mismo y obtén un presupuesto gratis. Sin compromisos.',
     'cc1.sub':'Llama ahora — disponible hoy','cc2.title':'Envía un Mensaje','cc2.sub':'Respondemos en menos de 1 hora','cc3.title':'WhatsApp','cc3.sub':'Chatea con nosotros',
+    'areas.tag':'Zonas de Servicio','areas.title':'Servimos el Bay Area','areas.sub':'Atendemos con orgullo estas comunidades de la Península con limpieza de primera calidad.',
+    'area.residential':'Residencial','area.both':'Residencial y Comercial',
+    'areas.nearby':'¿No estás en la lista? Contáctanos — puede que cubramos tu área también.','areas.cta':'Verifica tu Zona',
     'footer.tagline':'Limpieza Residencial y Comercial','footer.copy':'© 2025 Todos los derechos reservados.'
   }
 };
