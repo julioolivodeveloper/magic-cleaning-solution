@@ -56,12 +56,9 @@
     .logo-img {
       height: 52px;
       width: auto;
-      background: #fff;
-      border-radius: 10px;
-      padding: 4px 10px;
-      box-shadow: 0 0 20px rgba(14,165,233,.45);
-      animation: pulse 2.5s ease-in-out infinite;
       object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(14,165,233,.7));
+      animation: pulse 2.5s ease-in-out infinite;
     }
     @keyframes pulse {
       0%,100% { box-shadow: 0 0 20px rgba(14,165,233,.45); }
@@ -623,7 +620,7 @@
 
       /* Nav: compact */
       nav { padding: 10px 5%; }
-      .logo-img { height: 40px; padding: 3px 8px; }
+      .logo-img { height: 40px; }
       .nav-cta { padding: 9px 16px; font-size: .82rem; }
       .lang-toggle { padding: 4px 5px; }
       .lang-btn { padding: 3px 8px; font-size: .72rem; }
@@ -1055,7 +1052,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="logo.png" alt="Magic Cleaning Solution" style="height:62px;width:auto;background:#fff;border-radius:10px;padding:4px 12px;margin-bottom:14px;object-fit:contain;">
+  <img src="logo.png" alt="Magic Cleaning Solution" style="height:72px;width:auto;margin-bottom:14px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(14,165,233,.6));">
   <p style="margin-bottom:6px;">
     <span data-i18n="footer.tagline">Residential &amp; Commercial Cleaning</span>
   </p>
