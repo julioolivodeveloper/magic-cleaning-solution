@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Magic Cleaning Solution — Limpieza Residencial y Comercial</title>
+  <title>Magic Cleaning Solution — Residential & Commercial Cleaning</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -30,15 +30,7 @@
     }
 
     /* ─── Floating particles ─── */
-    #particles {
-      position: fixed; inset: 0; pointer-events: none; z-index: 3;
-    }
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: .18;
-      animation: floatUp linear infinite;
-    }
+    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 3; }
 
     @keyframes floatUp {
       0%   { transform: translateY(100vh) scale(.5); opacity: 0; }
@@ -52,10 +44,9 @@
       position: fixed; top: 0; width: 100%; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 14px 6%;
-      background: rgba(12,26,46,.85);
+      background: rgba(12,26,46,.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(14,165,233,.2);
-      transition: background .3s;
     }
 
     .logo {
@@ -68,7 +59,6 @@
       background: linear-gradient(135deg, var(--blue), var(--teal));
       border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
       box-shadow: 0 0 18px rgba(14,165,233,.5);
       animation: pulse 2.5s ease-in-out infinite;
     }
@@ -76,8 +66,9 @@
       0%,100% { box-shadow: 0 0 18px rgba(14,165,233,.5); }
       50%      { box-shadow: 0 0 32px rgba(14,165,233,.9); }
     }
-
     .logo span { color: var(--blue); }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
 
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
@@ -86,7 +77,28 @@
     }
     .nav-links a:hover { color: var(--blue); }
 
+    /* Language toggle */
+    .lang-toggle {
+      display: flex; align-items: center; gap: 4px;
+      background: rgba(14,165,233,.1);
+      border: 1px solid rgba(14,165,233,.3);
+      border-radius: 50px; padding: 5px 6px;
+      cursor: pointer;
+    }
+    .lang-btn {
+      padding: 4px 10px; border-radius: 50px; border: none; background: none;
+      font-size: .78rem; font-weight: 700; cursor: pointer;
+      color: #7dd3fc; transition: all .2s; font-family: inherit;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(14,165,233,.4);
+    }
+    .lang-divider { color: rgba(14,165,233,.4); font-size: .75rem; }
+
     .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
       background: linear-gradient(135deg, var(--blue), var(--teal));
       color: #fff; border: none; padding: 10px 22px;
       border-radius: 50px; font-size: .9rem; font-weight: 700;
@@ -103,15 +115,11 @@
       align-items: center; justify-content: center;
       text-align: center;
       padding: 120px 6% 80px;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       background: var(--dark);
     }
 
-    /* Slideshow de fondo */
-    .hero-slideshow {
-      position: absolute; inset: 0; z-index: 0;
-    }
+    .hero-slideshow { position: absolute; inset: 0; z-index: 0; }
     .hero-slide {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
@@ -119,38 +127,47 @@
       animation: slideShow 24s linear infinite;
       will-change: opacity, transform;
     }
-    .hero-slide:nth-child(1) { animation-delay: 0s;   background-image: url('img1.jpg'); }
-    .hero-slide:nth-child(2) { animation-delay: 6s;   background-image: url('img2.jpg'); }
-    .hero-slide:nth-child(3) { animation-delay: 12s;  background-image: url('img3.jpg'); }
-    .hero-slide:nth-child(4) { animation-delay: 18s;  background-image: url('img4.jpg'); }
+    .hero-slide:nth-child(1) { animation-delay: 0s;  background-image: url('img1.jpg'); }
+    .hero-slide:nth-child(2) { animation-delay: 6s;  background-image: url('img2.jpg'); }
+    .hero-slide:nth-child(3) { animation-delay: 12s; background-image: url('img3.jpg'); }
+    .hero-slide:nth-child(4) { animation-delay: 18s; background-image: url('img4.jpg'); }
 
     @keyframes slideShow {
-      0%          { opacity:0;   transform: scale(1.08); }
-      4%          { opacity:1;   transform: scale(1.08); }
-      22%         { opacity:1;   transform: scale(1.0);  }
-      26%         { opacity:0;   transform: scale(1.0);  }
-      100%        { opacity:0;   transform: scale(1.08); }
+      0%   { opacity:0; transform: scale(1.08); }
+      4%   { opacity:1; transform: scale(1.08); }
+      22%  { opacity:1; transform: scale(1.0); }
+      26%  { opacity:0; transform: scale(1.0); }
+      100% { opacity:0; transform: scale(1.08); }
     }
 
-    /* Overlay oscuro sobre las imágenes */
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to bottom,
-        rgba(8,15,28,.78) 0%,
-        rgba(12,26,46,.65) 50%,
-        rgba(8,15,28,.88) 100%
-      );
+      background: linear-gradient(to bottom, rgba(8,15,28,.78) 0%, rgba(12,26,46,.65) 50%, rgba(8,15,28,.88) 100%);
     }
-    /* Tinte azul sutil encima */
     .hero-overlay::after {
       content:''; position:absolute; inset:0;
       background: radial-gradient(ellipse at 50% 60%, rgba(6,182,212,.15) 0%, transparent 70%),
                   radial-gradient(ellipse at 80% 20%, rgba(14,165,233,.1) 0%, transparent 60%);
     }
 
-    /* Todo el contenido del hero va sobre z-index:2 */
     .hero > *:not(.hero-slideshow):not(.hero-overlay) { position: relative; z-index: 2; }
+
+    .hero-float {
+      position: absolute; pointer-events: none;
+      opacity: .1; z-index: 2;
+      animation: floatIcon 6s ease-in-out infinite;
+    }
+    .hero-float:nth-child(3)  { top:15%; left:8%;    animation-delay:0s;   animation-duration:7s; }
+    .hero-float:nth-child(4)  { top:25%; right:7%;   animation-delay:1.5s; animation-duration:5s; }
+    .hero-float:nth-child(5)  { bottom:20%; left:5%; animation-delay:2s;   animation-duration:8s; }
+    .hero-float:nth-child(6)  { bottom:30%; right:6%;animation-delay:.8s;  animation-duration:6s; }
+    .hero-float:nth-child(7)  { top:50%; left:3%;    animation-delay:3s;   animation-duration:7s; }
+    .hero-float:nth-child(8)  { top:10%; left:40%;   animation-delay:2.5s; animation-duration:5.5s; }
+
+    @keyframes floatIcon {
+      0%,100% { transform: translateY(0) rotate(-8deg); }
+      50%      { transform: translateY(-24px) rotate(8deg); }
+    }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -170,8 +187,7 @@
 
     .hero h1 {
       font-size: clamp(2.4rem, 6vw, 5rem);
-      font-weight: 900; line-height: 1.1;
-      color: #fff;
+      font-weight: 900; line-height: 1.1; color: #fff;
       animation: fadeUp .9s ease .1s both;
     }
     .hero h1 .gradient-text {
@@ -222,44 +238,6 @@
     }
     .btn-secondary:hover { background: rgba(14,165,233,.1); transform: translateY(-4px); }
 
-    /* ─── Floating cleaning icons in hero ─── */
-    .hero-float {
-      position: absolute; pointer-events: none;
-      font-size: 2.8rem; opacity: .12;
-      animation: floatIcon 6s ease-in-out infinite;
-    }
-    .hero-float:nth-child(1)  { top:15%; left:8%;  animation-delay:0s;    animation-duration:7s; }
-    .hero-float:nth-child(2)  { top:25%; right:7%; animation-delay:1.5s;  animation-duration:5s; }
-    .hero-float:nth-child(3)  { bottom:20%; left:5%; animation-delay:2s;  animation-duration:8s; }
-    .hero-float:nth-child(4)  { bottom:30%; right:6%; animation-delay:.8s; animation-duration:6s; }
-    .hero-float:nth-child(5)  { top:50%; left:3%; animation-delay:3s;    animation-duration:7s; }
-    .hero-float:nth-child(6)  { top:10%; left:40%; animation-delay:2.5s; animation-duration:5.5s; }
-
-    @keyframes floatIcon {
-      0%,100% { transform: translateY(0) rotate(-8deg); }
-      50%      { transform: translateY(-24px) rotate(8deg); }
-    }
-
-    /* Stats ribbon */
-    .stats {
-      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
-      margin-top: 60px;
-      animation: fadeUp .9s ease .5s both;
-    }
-    .stat {
-      padding: 20px 40px;
-      border-right: 1px solid rgba(14,165,233,.2);
-      text-align: center;
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-size: 2.2rem; font-weight: 900; color: #fff;
-      background: linear-gradient(90deg, var(--blue), var(--teal));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .stat-label { font-size: .82rem; color: #7dd3fc; font-weight: 500; }
-
     /* ─── SERVICES ─── */
     section { padding: 90px 6%; position: relative; z-index: 1; }
 
@@ -291,13 +269,11 @@
       background: rgba(30,58,95,.5);
       border: 1px solid rgba(14,165,233,.18);
       border-radius: 20px; padding: 36px 28px;
-      position: relative; overflow: hidden;
-      cursor: default;
+      position: relative; overflow: hidden; cursor: default;
       transition: transform .3s, border-color .3s, box-shadow .3s;
     }
     .service-card::before {
-      content:'';
-      position: absolute; inset:0;
+      content:''; position: absolute; inset:0;
       background: linear-gradient(135deg, rgba(14,165,233,.06), transparent 60%);
       opacity:0; transition: opacity .3s;
     }
@@ -305,8 +281,7 @@
     .service-card:hover::before { opacity:1; }
 
     .service-icon-wrap {
-      width: 66px; height: 66px;
-      border-radius: 18px; margin-bottom: 22px;
+      width: 66px; height: 66px; border-radius: 18px; margin-bottom: 22px;
       display: flex; align-items: center; justify-content: center;
       transition: transform .35s cubic-bezier(.34,1.56,.64,1);
     }
@@ -321,7 +296,7 @@
     .service-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
     .service-card p  { font-size: .9rem; color: #93c5fd; line-height: 1.65; }
 
-    .tag-new {
+    .tag-badge {
       position: absolute; top: 16px; right: 16px;
       background: linear-gradient(135deg, var(--blue), var(--teal));
       color:#fff; font-size:.7rem; font-weight:700;
@@ -340,7 +315,6 @@
       min-height: 420px;
     }
 
-    /* Central illustration panel */
     .why-panel {
       width: 300px; height: 300px; border-radius: 28px;
       background: linear-gradient(145deg, rgba(14,165,233,.18) 0%, rgba(6,182,212,.1) 50%, rgba(16,185,129,.08) 100%);
@@ -364,7 +338,6 @@
     .why-panel-title { font-size: 1rem; font-weight: 700; color: #fff; }
     .why-panel-sub   { font-size: .82rem; color: #7dd3fc; text-align: center; padding: 0 20px; }
 
-    /* Floating mini-cards */
     .why-badge {
       position: absolute;
       background: rgba(12,26,46,.9);
@@ -376,10 +349,10 @@
       animation: badgeFloat 4s ease-in-out infinite;
       white-space: nowrap;
     }
-    .why-badge:nth-child(2) { top: 10px;  left: -20px;  animation-delay: 0s; }
-    .why-badge:nth-child(3) { top: 10px;  right: -20px; animation-delay: 1s; animation-duration: 5s; }
-    .why-badge:nth-child(4) { bottom: 30px; left: -10px; animation-delay: 2s; animation-duration: 4.5s; }
-    .why-badge:nth-child(5) { bottom: 30px; right: -10px;animation-delay: .5s; animation-duration: 3.8s; }
+    .why-badge:nth-child(1) { top: 10px;    left: -20px;  animation-delay: 0s;  }
+    .why-badge:nth-child(2) { top: 10px;    right: -20px; animation-delay: 1s;  animation-duration: 5s; }
+    .why-badge:nth-child(4) { bottom: 30px; left: -10px;  animation-delay: 2s;  animation-duration: 4.5s; }
+    .why-badge:nth-child(5) { bottom: 30px; right: -10px; animation-delay: .5s; animation-duration: 3.8s; }
 
     @keyframes badgeFloat {
       0%,100% { transform: translateY(0); }
@@ -388,17 +361,11 @@
 
     .why-badge-icon {
       width: 32px; height: 32px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .why-badge-icon svg { width: 18px; height: 18px; }
     .why-badge strong { display:block; color:#fff; font-size:.88rem; font-weight:700; line-height:1.1; }
     .why-badge span   { font-size:.72rem; color:#7dd3fc; }
-
-    @keyframes rotateSlow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
 
     .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
     .why-item {
@@ -434,11 +401,7 @@
     }
     @media(max-width:640px){ .steps::before { display:none; } }
 
-    .step {
-      text-align: center; padding: 30px 20px;
-      position: relative;
-      transition: transform .3s;
-    }
+    .step { text-align: center; padding: 30px 20px; position: relative; transition: transform .3s; }
     .step:hover { transform: translateY(-8px); }
 
     .step-num {
@@ -455,23 +418,16 @@
     .step h4 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
     .step p  { font-size: .85rem; color: #7dd3fc; line-height: 1.55; }
 
-    /* ─── CONTACT / CTA ─── */
+    /* ─── CONTACT ─── */
     .cta-section {
       text-align: center;
       background: linear-gradient(135deg, rgba(14,165,233,.12) 0%, rgba(6,182,212,.08) 50%, rgba(16,185,129,.06) 100%);
       border-top: 1px solid rgba(14,165,233,.15);
     }
+    .cta-section h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; color: #fff; margin-bottom: 16px; }
+    .cta-section > .reveal > p { color: #7dd3fc; font-size: 1.05rem; margin-bottom: 40px; }
 
-    .cta-section h2 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 900; color: #fff; margin-bottom: 16px;
-    }
-    .cta-section p { color: #7dd3fc; font-size: 1.05rem; margin-bottom: 40px; }
-
-    .contact-cards {
-      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
+    .contact-cards { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 48px; }
     .contact-card {
       display: flex; align-items: center; gap: 14px;
       background: rgba(30,58,95,.6);
@@ -483,14 +439,12 @@
     .contact-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(14,165,233,.3); border-color: var(--blue); }
     .contact-card-icon {
       width: 50px; height: 50px; border-radius: 13px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .contact-card-icon svg { width: 26px; height: 26px; }
     .cc-phone { background: linear-gradient(135deg, rgba(14,165,233,.3), rgba(6,182,212,.2)); }
     .cc-msg   { background: linear-gradient(135deg, rgba(16,185,129,.3), rgba(6,182,212,.2)); }
     .cc-email { background: linear-gradient(135deg, rgba(139,92,246,.3), rgba(14,165,233,.2)); }
-
     .contact-card-text strong { display:block; color:#fff; font-size:1.05rem; font-weight:700; }
     .contact-card-text span   { font-size:.82rem; color:#7dd3fc; }
 
@@ -519,57 +473,49 @@
     footer strong { color: var(--accent); }
 
     /* ─── Scroll reveal ─── */
-    .reveal {
-      opacity: 0; transform: translateY(40px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible {
-      opacity: 1; transform: translateY(0);
-    }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── Responsive nav ─── */
-    @media(max-width:700px){
-      .nav-links { display:none; }
-      .stats { gap:0; }
-      .stat { padding: 16px 20px; }
-    }
-
-    /* ─── Shine sweep on cards ─── */
-    @keyframes shine {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
+    @media(max-width:700px){ .nav-links { display:none; } }
   </style>
 </head>
 <body>
 
-<!-- Floating particles -->
 <canvas id="particles"></canvas>
 
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
     <div class="logo-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.065-4.677A4 4 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.065-4.677A4 4 0 0 0 14.5 2Z"/></svg>
-  </div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.065-4.677A4 4 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.065-4.677A4 4 0 0 0 14.5 2Z"/></svg>
+    </div>
     <div>Magic <span>Cleaning</span></div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#proceso">Proceso</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-  <a href="tel:6504861294" class="nav-cta" style="display:inline-flex;align-items:center;gap:8px;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    Llámanos
-  </a>
+
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services"  data-i18n="nav.services">Services</a></li>
+      <li><a href="#about"     data-i18n="nav.about">About Us</a></li>
+      <li><a href="#process"   data-i18n="nav.process">Process</a></li>
+      <li><a href="#contact"   data-i18n="nav.contact">Contact</a></li>
+    </ul>
+
+    <!-- Language toggle -->
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
+
+    <a href="tel:6504861294" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span data-i18n="nav.cta">Call Us</span>
+    </a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-
-  <!-- Slideshow de fondo -->
   <div class="hero-slideshow">
     <div class="hero-slide"></div>
     <div class="hero-slide"></div>
@@ -578,151 +524,123 @@
   </div>
   <div class="hero-overlay"></div>
 
-  <!-- floating background icons -->
-  <div class="hero-float" style="font-size:0">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M3 22V12a9 9 0 1 1 18 0v10"/><path d="M5 22h14"/><path d="M9 22V12a3 3 0 0 1 6 0v10"/></svg>
-  </div>
-  <div class="hero-float" style="font-size:0">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>
-  </div>
-  <div class="hero-float" style="font-size:0">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M15 2H9a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/><path d="M8 9h8l1 11H7L8 9z"/><path d="M12 12v5"/></svg>
-  </div>
-  <div class="hero-float" style="font-size:0">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12s1-2 4-2 4 2 4 2"/><path d="M9 9h.01M15 9h.01"/></svg>
-  </div>
-  <div class="hero-float" style="font-size:0">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-  </div>
-  <div class="hero-float" style="font-size:0">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13c0-4.418 3.582-8 8-8s8 3.582 8 8"/><path d="M2 21h20"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/></svg>
-  </div>
+  <!-- floating SVG icons -->
+  <div class="hero-float"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M3 22V12a9 9 0 1 1 18 0v10"/><path d="M5 22h14"/><path d="M9 22V12a3 3 0 0 1 6 0v10"/></svg></div>
+  <div class="hero-float"><svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg></div>
+  <div class="hero-float"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M15 2H9a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/><path d="M8 9h8l1 11H7L8 9z"/><path d="M12 12v5"/></svg></div>
+  <div class="hero-float"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12s1-2 4-2 4 2 4 2"/><path d="M9 9h.01M15 9h.01"/></svg></div>
+  <div class="hero-float"><svg viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+  <div class="hero-float"><svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px"><path d="M10 2h4"/><path d="M4 13c0-4.418 3.582-8 8-8s8 3.582 8 8"/><path d="M2 21h20"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/></svg></div>
 
   <div class="hero-badge">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-    Limpieza Residencial &amp; Comercial de Confianza
+    <span data-i18n="hero.badge">Trusted Residential &amp; Commercial Cleaning</span>
   </div>
 
   <h1>
-    La Limpieza Perfecta,<br/>
-    <span class="gradient-text">Sin Esfuerzo de tu Parte</span>
+    <span data-i18n="hero.h1a">The Perfect Clean,</span><br/>
+    <span class="gradient-text" data-i18n="hero.h1b">Effortlessly Done</span>
   </h1>
 
-  <p>
-    Transformamos cada espacio en un ambiente impecable. Hogares, oficinas y locales comerciales — dejamos todo brillando con productos ecológicos y equipo profesional.
-  </p>
+  <p data-i18n="hero.desc">We transform every space into a spotless environment. Homes, offices and commercial spaces — we make everything shine using eco-friendly products and professional equipment.</p>
 
   <div class="hero-btns">
     <a href="tel:6504861294" class="btn-primary">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       (650) 486-1294
     </a>
-    <a href="#servicios" class="btn-secondary">
-      Ver Servicios &nbsp;→
-    </a>
+    <a href="#services" class="btn-secondary" data-i18n="hero.btn">View Services &nbsp;→</a>
   </div>
-
 </section>
 
 <!-- SERVICES -->
-<section id="servicios">
+<section id="services">
   <div class="reveal">
-    <div class="section-tag">Nuestros Servicios</div>
-    <h2 class="section-title">Lo Que Hacemos por Ti</h2>
-    <p class="section-sub">Cobertura completa para que tu espacio siempre esté en perfectas condiciones.</p>
+    <div class="section-tag" data-i18n="services.tag">Our Services</div>
+    <h2 class="section-title" data-i18n="services.title">What We Do For You</h2>
+    <p class="section-sub" data-i18n="services.sub">Full coverage so your space is always in perfect condition.</p>
   </div>
 
   <div class="services-grid">
 
     <div class="service-card reveal">
       <div class="service-icon-wrap ic-blue">
-        <!-- Casa con escoba -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1V9.5"/><path d="M9.5 14.5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5"/><line x1="12" y1="12" x2="12" y2="21"/></svg>
       </div>
-      <h3>Limpieza Residencial</h3>
-      <p>Limpieza profunda de hogares: cocina, baños, dormitorios y áreas comunes. Servicio regular o por evento.</p>
+      <h3 data-i18n="s1.title">Residential Cleaning</h3>
+      <p data-i18n="s1.desc">Deep cleaning for homes: kitchen, bathrooms, bedrooms and common areas. Regular or one-time service.</p>
     </div>
 
     <div class="service-card reveal">
       <div class="service-icon-wrap ic-teal">
-        <!-- Edificio comercial -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
       </div>
-      <h3>Limpieza Comercial</h3>
-      <p>Oficinas, tiendas y locales. Mantenemos tu negocio presentable para clientes y empleados.</p>
+      <h3 data-i18n="s2.title">Commercial Cleaning</h3>
+      <p data-i18n="s2.desc">Offices, shops and businesses. We keep your space presentable for clients and employees.</p>
     </div>
 
     <div class="service-card reveal">
       <div class="service-icon-wrap ic-green">
-        <!-- Ventana con brillo -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/><circle cx="18" cy="6" r="1.5" fill="#10b981" stroke="none"/><path d="M16 4l4 4" stroke-width="1.2" opacity=".5"/></svg>
       </div>
-      <h3>Lavado de Ventanas</h3>
-      <p>Vidrios interiores y exteriores impecables. Incluye marcos y tracks. Para edificios de 1 a 3 pisos.</p>
-      <span class="tag-new">Popular</span>
+      <h3 data-i18n="s3.title">Window Washing</h3>
+      <p data-i18n="s3.desc">Spotless interior and exterior glass. Includes frames and tracks. For buildings 1 to 3 floors.</p>
+      <span class="tag-badge" data-i18n="badge.popular">Popular</span>
     </div>
 
     <div class="service-card reveal">
       <div class="service-icon-wrap ic-purple">
-        <!-- Sofá -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/><path d="M2 11a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5H2v-5z"/><path d="M4 16v2"/><path d="M20 16v2"/><path d="M7 9h10"/></svg>
       </div>
-      <h3>Limpieza de Tapicería</h3>
-      <p>Sofás, alfombras y muebles. Eliminamos manchas, olores y alérgenos con equipo especializado.</p>
+      <h3 data-i18n="s4.title">Upholstery Cleaning</h3>
+      <p data-i18n="s4.desc">Sofas, carpets and furniture. We eliminate stains, odors and allergens with specialized equipment.</p>
     </div>
 
     <div class="service-card reveal">
       <div class="service-icon-wrap ic-blue">
-        <!-- Spray / desinfección -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V12a4 4 0 0 1 4-4h1"/><path d="M9 8V4"/><path d="M7 4h6"/><path d="M13 4h1a2 2 0 0 1 2 2v2"/><path d="M16 8h2a2 2 0 0 1 2 2v2"/><path d="M4 16h8"/><path d="M20 14v8"/><circle cx="20" cy="10" r="2"/><path d="M6 22h8"/></svg>
       </div>
-      <h3>Desinfección Profunda</h3>
-      <p>Sanitización de superficies de alto contacto. Ideal post-COVID, para clínicas y guarderías.</p>
+      <h3 data-i18n="s5.title">Deep Disinfection</h3>
+      <p data-i18n="s5.desc">Sanitization of high-contact surfaces. Ideal for post-COVID, clinics and childcare centers.</p>
     </div>
 
     <div class="service-card reveal">
       <div class="service-icon-wrap ic-teal">
-        <!-- Casco + herramienta post construcción -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h20"/><path d="M6 18V9a6 6 0 0 1 12 0v9"/><path d="M4 18v2"/><path d="M20 18v2"/><path d="M9 9h6"/><path d="M12 3v6"/></svg>
       </div>
-      <h3>Post-Construcción</h3>
-      <p>Removemos polvo de construcción, pintura y escombros. Dejamos el espacio listo para habitar.</p>
-      <span class="tag-new">Nuevo</span>
+      <h3 data-i18n="s6.title">Post-Construction</h3>
+      <p data-i18n="s6.desc">We remove construction dust, paint and debris. We leave the space ready to move in.</p>
+      <span class="tag-badge" data-i18n="badge.new">New</span>
     </div>
 
   </div>
 </section>
 
 <!-- WHY US -->
-<section id="nosotros">
+<section id="about">
   <div class="why-grid">
 
     <div class="why-visual reveal">
-
-      <!-- Floating badge: Eco -->
       <div class="why-badge">
         <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(16,185,129,.35),rgba(6,182,212,.2))">
           <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
         </div>
-        <div><strong>100% Ecológico</strong><span>Productos biodegradables</span></div>
+        <div><strong data-i18n="badge1.title">100% Eco-Friendly</strong><span data-i18n="badge1.sub">Biodegradable products</span></div>
       </div>
 
-      <!-- Floating badge: Seguridad -->
       <div class="why-badge">
         <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(14,165,233,.35),rgba(6,182,212,.2))">
           <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
-        <div><strong>Personal Verificado</strong><span>Antecedentes limpios</span></div>
+        <div><strong data-i18n="badge2.title">Verified Staff</strong><span data-i18n="badge2.sub">Background checked</span></div>
       </div>
 
-      <!-- Central panel -->
       <div class="why-panel">
         <div class="why-panel-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1V9.5"/><path d="M10 21v-6h4v6"/></svg>
         </div>
         <div class="why-panel-title">Magic Cleaning Solution</div>
-        <div class="why-panel-sub">Limpieza residencial y comercial con calidad garantizada</div>
-        <!-- Star row -->
+        <div class="why-panel-sub" data-i18n="panel.sub">Residential &amp; commercial cleaning with guaranteed quality</div>
         <div style="display:flex;gap:4px;margin-top:6px;">
           <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -730,65 +648,54 @@
           <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24" fill="#f59e0b" stroke="none" style="width:18px;height:18px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <div style="font-size:.75rem;color:#7dd3fc;margin-top:2px;">Calificación 5 estrellas</div>
+        <div style="font-size:.75rem;color:#7dd3fc;margin-top:2px;" data-i18n="panel.stars">5-Star Rating</div>
       </div>
 
-      <!-- Floating badge: Puntualidad -->
       <div class="why-badge">
         <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(6,182,212,.35),rgba(14,165,233,.2))">
           <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <div><strong>Puntualidad</strong><span>Llegamos a tiempo</span></div>
+        <div><strong data-i18n="badge3.title">On Time</strong><span data-i18n="badge3.sub">Always punctual</span></div>
       </div>
 
-      <!-- Floating badge: Garantía -->
       <div class="why-badge">
         <div class="why-badge-icon" style="background:linear-gradient(135deg,rgba(139,92,246,.35),rgba(14,165,233,.2))">
           <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div><strong>Garantía Total</strong><span>Satisfacción asegurada</span></div>
+        <div><strong data-i18n="badge4.title">Full Guarantee</strong><span data-i18n="badge4.sub">Satisfaction assured</span></div>
       </div>
-
     </div>
 
     <div>
-      <div class="section-tag reveal">¿Por Qué Elegirnos?</div>
-      <h2 class="section-title reveal">Calidad Que Puedes Ver y Sentir</h2>
+      <div class="section-tag reveal" data-i18n="why.tag">Why Choose Us?</div>
+      <h2 class="section-title reveal" data-i18n="why.title">Quality You Can See and Feel</h2>
       <ul class="why-list">
         <li class="why-item reveal">
-          <div class="why-dot">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-          </div>
+          <div class="why-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
           <div>
-            <h4>Productos Ecológicos</h4>
-            <p>Usamos productos biodegradables que cuidan tu familia, mascotas y el medio ambiente.</p>
+            <h4 data-i18n="w1.title">Eco-Friendly Products</h4>
+            <p data-i18n="w1.desc">We use biodegradable products that protect your family, pets and the environment.</p>
           </div>
         </li>
         <li class="why-item reveal">
-          <div class="why-dot">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-          </div>
+          <div class="why-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
           <div>
-            <h4>Personal Verificado</h4>
-            <p>Todo nuestro equipo pasa verificación de antecedentes. Tu seguridad es nuestra prioridad.</p>
+            <h4 data-i18n="w2.title">Verified Staff</h4>
+            <p data-i18n="w2.desc">All our team members pass background checks. Your safety is our top priority.</p>
           </div>
         </li>
         <li class="why-item reveal">
-          <div class="why-dot">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
+          <div class="why-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div>
-            <h4>Puntuales y Confiables</h4>
-            <p>Llegamos a tiempo, siempre. Si no quedas satisfecho, regresamos sin costo adicional.</p>
+            <h4 data-i18n="w3.title">Punctual &amp; Reliable</h4>
+            <p data-i18n="w3.desc">We show up on time, every time. Not satisfied? We come back at no extra charge.</p>
           </div>
         </li>
         <li class="why-item reveal">
-          <div class="why-dot">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
+          <div class="why-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
           <div>
-            <h4>Precios Transparentes</h4>
-            <p>Sin costos ocultos. Presupuesto gratuito y cotización clara antes de comenzar.</p>
+            <h4 data-i18n="w4.title">Transparent Pricing</h4>
+            <p data-i18n="w4.desc">No hidden fees. Free estimate and clear quote before we start.</p>
           </div>
         </li>
       </ul>
@@ -798,82 +705,68 @@
 </section>
 
 <!-- PROCESS -->
-<section id="proceso" class="process-section">
+<section id="process" class="process-section">
   <div style="text-align:center" class="reveal">
-    <div class="section-tag">Cómo Funciona</div>
-    <h2 class="section-title">4 Simples Pasos</h2>
-    <p class="section-sub" style="margin: 0 auto 56px;">Reservar tu limpieza es fácil y rápido.</p>
+    <div class="section-tag" data-i18n="proc.tag">How It Works</div>
+    <h2 class="section-title" data-i18n="proc.title">4 Simple Steps</h2>
+    <p class="section-sub" style="margin: 0 auto 56px;" data-i18n="proc.sub">Booking your cleaning is easy and fast.</p>
   </div>
 
   <div class="steps">
     <div class="step reveal">
       <div class="step-num">1</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      </div>
-      <h4>Llámanos o Escribe</h4>
-      <p>Contáctanos por teléfono o mensaje. Respondemos en menos de 1 hora.</p>
+      <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <h4 data-i18n="step1.title">Call or Text Us</h4>
+      <p data-i18n="step1.desc">Reach us by phone or message. We respond in under 1 hour.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">2</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      </div>
-      <h4>Cotización Gratis</h4>
-      <p>Te damos un precio claro basado en el tamaño y tipo de limpieza que necesitas.</p>
+      <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <h4 data-i18n="step2.title">Free Quote</h4>
+      <p data-i18n="step2.desc">We give you a clear price based on the size and type of cleaning needed.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">3</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
-      </div>
-      <h4>Agenda tu Cita</h4>
-      <p>Elegimos el día y hora que más te convengan. Flexibilidad total.</p>
+      <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
+      <h4 data-i18n="step3.title">Schedule Your Visit</h4>
+      <p data-i18n="step3.desc">We pick the day and time that works best for you. Total flexibility.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">4</div>
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/><circle cx="12" cy="12" r="3" fill="rgba(167,139,250,.2)" stroke="#a78bfa" stroke-width="1"/></svg>
-      </div>
-      <h4>¡Disfruta el Resultado!</h4>
-      <p>Nuestro equipo llega y hace la magia. Tú solo relájate y disfruta.</p>
+      <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/><circle cx="12" cy="12" r="3" fill="rgba(167,139,250,.2)" stroke="#a78bfa" stroke-width="1"/></svg></div>
+      <h4 data-i18n="step4.title">Enjoy the Results!</h4>
+      <p data-i18n="step4.desc">Our team arrives and works the magic. You just sit back and relax.</p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT / CTA -->
-<section id="contacto" class="cta-section">
+<!-- CONTACT -->
+<section id="contact" class="cta-section">
   <div class="reveal">
-    <div class="section-tag">Contacto</div>
-    <h2>¿Listo para un Espacio <span style="background:linear-gradient(90deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Impecable?</span></h2>
-    <p>Llámanos hoy mismo y obtén un presupuesto gratis. Sin compromisos.</p>
+    <div class="section-tag" data-i18n="cta.tag">Contact</div>
+    <h2><span data-i18n="cta.title">Ready for a </span><span style="background:linear-gradient(90deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="cta.highlight">Spotless Space?</span></h2>
+    <p data-i18n="cta.sub">Call us today and get a free estimate. No commitments.</p>
   </div>
 
   <div class="contact-cards reveal">
     <a href="tel:6504861294" class="contact-card">
-      <div class="contact-card-icon cc-phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      </div>
+      <div class="contact-card-icon cc-phone"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
       <div class="contact-card-text">
         <strong>(650) 486-1294</strong>
-        <span>Llama ahora — disponible hoy</span>
+        <span data-i18n="cc1.sub">Call now — available today</span>
       </div>
     </a>
     <a href="sms:6504861294" class="contact-card">
-      <div class="contact-card-icon cc-msg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="9.01" y2="10" stroke-width="2.5"/><line x1="12" y1="10" x2="12.01" y2="10" stroke-width="2.5"/><line x1="15" y1="10" x2="15.01" y2="10" stroke-width="2.5"/></svg>
-      </div>
+      <div class="contact-card-icon cc-msg"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="9.01" y2="10" stroke-width="2.5"/><line x1="12" y1="10" x2="12.01" y2="10" stroke-width="2.5"/><line x1="15" y1="10" x2="15.01" y2="10" stroke-width="2.5"/></svg></div>
       <div class="contact-card-text">
-        <strong>Envía un Mensaje</strong>
-        <span>Respondemos en menos de 1 hora</span>
+        <strong data-i18n="cc2.title">Send a Text</strong>
+        <span data-i18n="cc2.sub">We reply in under 1 hour</span>
       </div>
     </a>
     <a href="mailto:info@magiccleaningsolution.com" class="contact-card">
-      <div class="contact-card-icon cc-email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      </div>
+      <div class="contact-card-icon cc-email"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
       <div class="contact-card-text">
-        <strong>Envía un Email</strong>
+        <strong data-i18n="cc3.title">Send an Email</strong>
         <span>info@magiccleaningsolution.com</span>
       </div>
     </a>
@@ -888,64 +781,132 @@
 <!-- FOOTER -->
 <footer>
   <p style="margin-bottom:6px;">
-    <strong>Magic Cleaning Solution</strong> — Limpieza Residencial y Comercial
+    <strong>Magic Cleaning Solution</strong> — <span data-i18n="footer.tagline">Residential &amp; Commercial Cleaning</span>
   </p>
-  <p>📍 Bay Area, California &nbsp;|&nbsp; 📞 (650) 486-1294 &nbsp;|&nbsp; © 2025 Todos los derechos reservados.</p>
+  <p>📍 Bay Area, California &nbsp;|&nbsp; 📞 (650) 486-1294 &nbsp;|&nbsp; <span data-i18n="footer.copy">© 2025 All rights reserved.</span></p>
 </footer>
 
 <script>
+/* ── Translations ── */
+const T = {
+  en: {
+    'nav.services':'Services','nav.about':'About Us','nav.process':'Process','nav.contact':'Contact','nav.cta':'Call Us',
+    'hero.badge':'Trusted Residential & Commercial Cleaning',
+    'hero.h1a':'The Perfect Clean,','hero.h1b':'Effortlessly Done',
+    'hero.desc':'We transform every space into a spotless environment. Homes, offices and commercial spaces — we make everything shine using eco-friendly products and professional equipment.',
+    'hero.btn':'View Services &nbsp;→',
+    'services.tag':'Our Services','services.title':'What We Do For You','services.sub':'Full coverage so your space is always in perfect condition.',
+    's1.title':'Residential Cleaning','s1.desc':'Deep cleaning for homes: kitchen, bathrooms, bedrooms and common areas. Regular or one-time service.',
+    's2.title':'Commercial Cleaning','s2.desc':'Offices, shops and businesses. We keep your space presentable for clients and employees.',
+    's3.title':'Window Washing','s3.desc':'Spotless interior and exterior glass. Includes frames and tracks. For buildings 1 to 3 floors.',
+    's4.title':'Upholstery Cleaning','s4.desc':'Sofas, carpets and furniture. We eliminate stains, odors and allergens with specialized equipment.',
+    's5.title':'Deep Disinfection','s5.desc':'Sanitization of high-contact surfaces. Ideal for post-COVID, clinics and childcare centers.',
+    's6.title':'Post-Construction','s6.desc':'We remove construction dust, paint and debris. We leave the space ready to move in.',
+    'badge.popular':'Popular','badge.new':'New',
+    'badge1.title':'100% Eco-Friendly','badge1.sub':'Biodegradable products',
+    'badge2.title':'Verified Staff','badge2.sub':'Background checked',
+    'badge3.title':'On Time','badge3.sub':'Always punctual',
+    'badge4.title':'Full Guarantee','badge4.sub':'Satisfaction assured',
+    'panel.sub':'Residential & commercial cleaning with guaranteed quality','panel.stars':'5-Star Rating',
+    'why.tag':'Why Choose Us?','why.title':'Quality You Can See and Feel',
+    'w1.title':'Eco-Friendly Products','w1.desc':'We use biodegradable products that protect your family, pets and the environment.',
+    'w2.title':'Verified Staff','w2.desc':'All our team members pass background checks. Your safety is our top priority.',
+    'w3.title':'Punctual & Reliable','w3.desc':'We show up on time, every time. Not satisfied? We come back at no extra charge.',
+    'w4.title':'Transparent Pricing','w4.desc':'No hidden fees. Free estimate and clear quote before we start.',
+    'proc.tag':'How It Works','proc.title':'4 Simple Steps','proc.sub':'Booking your cleaning is easy and fast.',
+    'step1.title':'Call or Text Us','step1.desc':'Reach us by phone or message. We respond in under 1 hour.',
+    'step2.title':'Free Quote','step2.desc':'We give you a clear price based on the size and type of cleaning needed.',
+    'step3.title':'Schedule Your Visit','step3.desc':'We pick the day and time that works best for you. Total flexibility.',
+    'step4.title':'Enjoy the Results!','step4.desc':'Our team arrives and works the magic. You just sit back and relax.',
+    'cta.tag':'Contact','cta.title':'Ready for a ','cta.highlight':'Spotless Space?','cta.sub':'Call us today and get a free estimate. No commitments.',
+    'cc1.sub':'Call now — available today','cc2.title':'Send a Text','cc2.sub':'We reply in under 1 hour','cc3.title':'Send an Email',
+    'footer.tagline':'Residential & Commercial Cleaning','footer.copy':'© 2025 All rights reserved.'
+  },
+  es: {
+    'nav.services':'Servicios','nav.about':'Nosotros','nav.process':'Proceso','nav.contact':'Contacto','nav.cta':'Llámanos',
+    'hero.badge':'Limpieza Residencial y Comercial de Confianza',
+    'hero.h1a':'La Limpieza Perfecta,','hero.h1b':'Sin Esfuerzo de tu Parte',
+    'hero.desc':'Transformamos cada espacio en un ambiente impecable. Hogares, oficinas y locales comerciales — dejamos todo brillando con productos ecológicos y equipo profesional.',
+    'hero.btn':'Ver Servicios &nbsp;→',
+    'services.tag':'Nuestros Servicios','services.title':'Lo Que Hacemos por Ti','services.sub':'Cobertura completa para que tu espacio siempre esté en perfectas condiciones.',
+    's1.title':'Limpieza Residencial','s1.desc':'Limpieza profunda de hogares: cocina, baños, dormitorios y áreas comunes. Servicio regular o por evento.',
+    's2.title':'Limpieza Comercial','s2.desc':'Oficinas, tiendas y locales. Mantenemos tu negocio presentable para clientes y empleados.',
+    's3.title':'Lavado de Ventanas','s3.desc':'Vidrios interiores y exteriores impecables. Incluye marcos y tracks. Para edificios de 1 a 3 pisos.',
+    's4.title':'Limpieza de Tapicería','s4.desc':'Sofás, alfombras y muebles. Eliminamos manchas, olores y alérgenos con equipo especializado.',
+    's5.title':'Desinfección Profunda','s5.desc':'Sanitización de superficies de alto contacto. Ideal post-COVID, para clínicas y guarderías.',
+    's6.title':'Post-Construcción','s6.desc':'Removemos polvo de construcción, pintura y escombros. Dejamos el espacio listo para habitar.',
+    'badge.popular':'Popular','badge.new':'Nuevo',
+    'badge1.title':'100% Ecológico','badge1.sub':'Productos biodegradables',
+    'badge2.title':'Personal Verificado','badge2.sub':'Antecedentes limpios',
+    'badge3.title':'Puntualidad','badge3.sub':'Llegamos a tiempo',
+    'badge4.title':'Garantía Total','badge4.sub':'Satisfacción asegurada',
+    'panel.sub':'Limpieza residencial y comercial con calidad garantizada','panel.stars':'Calificación 5 estrellas',
+    'why.tag':'¿Por Qué Elegirnos?','why.title':'Calidad Que Puedes Ver y Sentir',
+    'w1.title':'Productos Ecológicos','w1.desc':'Usamos productos biodegradables que cuidan tu familia, mascotas y el medio ambiente.',
+    'w2.title':'Personal Verificado','w2.desc':'Todo nuestro equipo pasa verificación de antecedentes. Tu seguridad es nuestra prioridad.',
+    'w3.title':'Puntuales y Confiables','w3.desc':'Llegamos a tiempo, siempre. Si no quedas satisfecho, regresamos sin costo adicional.',
+    'w4.title':'Precios Transparentes','w4.desc':'Sin costos ocultos. Presupuesto gratuito y cotización clara antes de comenzar.',
+    'proc.tag':'Cómo Funciona','proc.title':'4 Simples Pasos','proc.sub':'Reservar tu limpieza es fácil y rápido.',
+    'step1.title':'Llámanos o Escribe','step1.desc':'Contáctanos por teléfono o mensaje. Respondemos en menos de 1 hora.',
+    'step2.title':'Cotización Gratis','step2.desc':'Te damos un precio claro basado en el tamaño y tipo de limpieza que necesitas.',
+    'step3.title':'Agenda tu Cita','step3.desc':'Elegimos el día y hora que más te convengan. Flexibilidad total.',
+    'step4.title':'¡Disfruta el Resultado!','step4.desc':'Nuestro equipo llega y hace la magia. Tú solo relájate y disfruta.',
+    'cta.tag':'Contacto','cta.title':'¿Listo para un Espacio ','cta.highlight':'Impecable?','cta.sub':'Llámanos hoy mismo y obtén un presupuesto gratis. Sin compromisos.',
+    'cc1.sub':'Llama ahora — disponible hoy','cc2.title':'Envía un Mensaje','cc2.sub':'Respondemos en menos de 1 hora','cc3.title':'Envía un Email',
+    'footer.tagline':'Limpieza Residencial y Comercial','footer.copy':'© 2025 Todos los derechos reservados.'
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+
+  /* Update nav anchor hrefs for section IDs that change with lang */
+  const ids = { en: { services:'#services', about:'#about', process:'#process', contact:'#contact' },
+                 es: { services:'#services', about:'#about', process:'#process', contact:'#contact' } };
+  document.title = lang === 'en'
+    ? 'Magic Cleaning Solution — Residential & Commercial Cleaning'
+    : 'Magic Cleaning Solution — Limpieza Residencial y Comercial';
+}
+
 /* ── Particles canvas ── */
 (function(){
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particles = [];
 
-  function resize(){
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resize); resize();
 
   const COLORS = ['#0ea5e9','#06b6d4','#38bdf8','#10b981','#7dd3fc'];
 
   function spawn(){
-    return {
-      x: Math.random() * canvas.width,
-      y: canvas.height + 20,
-      r: 2 + Math.random() * 5,
-      speed: 0.4 + Math.random() * 0.8,
-      color: COLORS[Math.floor(Math.random()*COLORS.length)],
-      alpha: 0,
-      maxAlpha: .12 + Math.random()*.12,
-      drift: (Math.random()-.5)*.4,
-      life: 0,
-      maxLife: 400 + Math.random()*400,
-    };
+    return { x: Math.random()*canvas.width, y: canvas.height+20, r: 2+Math.random()*5,
+      speed: 0.4+Math.random()*.8, color: COLORS[Math.floor(Math.random()*COLORS.length)],
+      alpha: 0, maxAlpha: .12+Math.random()*.12, drift: (Math.random()-.5)*.4,
+      life: 0, maxLife: 400+Math.random()*400 };
   }
 
-  for(let i=0;i<60;i++){
-    const p = spawn();
-    p.y = Math.random()*canvas.height;
-    p.life = Math.random()*p.maxLife;
-    particles.push(p);
-  }
+  for(let i=0;i<60;i++){ const p=spawn(); p.y=Math.random()*canvas.height; p.life=Math.random()*p.maxLife; particles.push(p); }
 
   function tick(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach((p,i)=>{
-      p.life++;
-      p.y -= p.speed;
-      p.x += p.drift;
-      const t = p.life/p.maxLife;
-      p.alpha = t < .1 ? p.maxAlpha*(t/.1) : t > .85 ? p.maxAlpha*((1-t)/.15) : p.maxAlpha;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = p.color;
-      ctx.globalAlpha = p.alpha;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-      if(p.life >= p.maxLife) particles[i] = spawn();
+      p.life++; p.y-=p.speed; p.x+=p.drift;
+      const t=p.life/p.maxLife;
+      p.alpha=t<.1?p.maxAlpha*(t/.1):t>.85?p.maxAlpha*((1-t)/.15):p.maxAlpha;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.color; ctx.globalAlpha=p.alpha; ctx.fill(); ctx.globalAlpha=1;
+      if(p.life>=p.maxLife) particles[i]=spawn();
     });
     requestAnimationFrame(tick);
   }
@@ -953,24 +914,15 @@
 })();
 
 /* ── Scroll reveal ── */
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('visible'); }
-  });
-},{threshold:.12});
-
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold:.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* ── Staggered delay for cards ── */
-document.querySelectorAll('.services-grid .service-card').forEach((c,i)=>{
-  c.style.transitionDelay = (i*0.1)+'s';
-});
-document.querySelectorAll('.why-item').forEach((c,i)=>{
-  c.style.transitionDelay = (i*0.1)+'s';
-});
-document.querySelectorAll('.step').forEach((c,i)=>{
-  c.style.transitionDelay = (i*0.1)+'s';
-});
+/* ── Stagger delays ── */
+document.querySelectorAll('.services-grid .service-card').forEach((c,i) => c.style.transitionDelay=(i*.1)+'s');
+document.querySelectorAll('.why-item').forEach((c,i) => c.style.transitionDelay=(i*.1)+'s');
+document.querySelectorAll('.step').forEach((c,i) => c.style.transitionDelay=(i*.1)+'s');
 </script>
 </body>
 </html>
