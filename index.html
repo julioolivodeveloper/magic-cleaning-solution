@@ -405,7 +405,40 @@
     .why-item p  { font-size: .85rem; color: #7dd3fc; line-height: 1.5; }
 
     /* ─── PROCESS ─── */
-    .process-section { background: rgba(14,165,233,.04); border-top: 1px solid rgba(14,165,233,.1); border-bottom: 1px solid rgba(14,165,233,.1); }
+    .process-section {
+      border-top: 1px solid rgba(14,165,233,.1);
+      border-bottom: 1px solid rgba(14,165,233,.1);
+      position: relative; overflow: hidden;
+    }
+
+    /* Slideshow reutilizable */
+    .section-slideshow {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .section-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0;
+      animation: slideShow 24s linear infinite;
+      will-change: opacity, transform;
+    }
+    .section-slide:nth-child(1) { animation-delay: 0s;  }
+    .section-slide:nth-child(2) { animation-delay: 6s;  }
+    .section-slide:nth-child(3) { animation-delay: 12s; }
+    .section-slide:nth-child(4) { animation-delay: 18s; }
+
+    .section-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom,
+        rgba(8,15,28,.88) 0%,
+        rgba(10,20,40,.80) 50%,
+        rgba(8,15,28,.92) 100%);
+    }
+
+    /* All direct children of process-section above overlay */
+    .process-section > *:not(.section-slideshow):not(.section-overlay) {
+      position: relative; z-index: 2;
+    }
 
     .steps {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -783,6 +816,16 @@
 
 <!-- PROCESS -->
 <section id="process" class="process-section">
+
+  <!-- Slideshow fondo — orden diferente al hero -->
+  <div class="section-slideshow">
+    <div class="section-slide" style="background-image:url('img3.jpg')"></div>
+    <div class="section-slide" style="background-image:url('img4.jpg')"></div>
+    <div class="section-slide" style="background-image:url('img1.jpg')"></div>
+    <div class="section-slide" style="background-image:url('img2.jpg')"></div>
+  </div>
+  <div class="section-overlay"></div>
+
   <div style="text-align:center" class="reveal">
     <div class="section-tag" data-i18n="proc.tag">How It Works</div>
     <h2 class="section-title" data-i18n="proc.title">4 Simple Steps</h2>
