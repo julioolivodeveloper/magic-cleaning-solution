@@ -192,13 +192,31 @@
 
     .hero h1 {
       font-size: clamp(2.4rem, 6vw, 5rem);
-      font-weight: 900; line-height: 1.1; color: #fff;
+      font-weight: 900; line-height: 1.2; color: #fff;
       animation: fadeUp .9s ease .1s both;
     }
-    .hero h1 .gradient-text {
+
+    /* Typewriter line */
+    .typewriter-wrap {
+      display: block; min-height: 1.2em;
       background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+    #typewriter-text { display: inline; }
+    .tw-cursor {
+      display: inline-block;
+      width: 3px; height: .85em;
+      background: var(--teal);
+      margin-left: 3px;
+      vertical-align: middle;
+      border-radius: 2px;
+      animation: blink .75s step-end infinite;
+      -webkit-text-fill-color: initial; /* override gradient clip */
+    }
+    @keyframes blink {
+      0%,100% { opacity:1; }
+      50%      { opacity:0; }
     }
 
     .hero p {
@@ -644,7 +662,7 @@
 
     <h1>
       <span data-i18n="hero.h1a">The Perfect Clean,</span><br/>
-      <span class="gradient-text" data-i18n="hero.h1b">Effortlessly Done</span>
+      <span class="typewriter-wrap"><span id="typewriter-text"></span><span class="tw-cursor"></span></span>
     </h1>
 
     <p data-i18n="hero.desc">We transform every space into a spotless environment. Homes, offices and commercial spaces — we make everything shine using eco-friendly products and professional equipment.</p>
@@ -1045,6 +1063,76 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 document.querySelectorAll('.services-grid .service-card').forEach((c,i) => c.style.transitionDelay=(i*.1)+'s');
 document.querySelectorAll('.why-item').forEach((c,i) => c.style.transitionDelay=(i*.1)+'s');
 document.querySelectorAll('.step').forEach((c,i) => c.style.transitionDelay=(i*.1)+'s');
+
+/* ── Typewriter ── */
+const TW_PHRASES = {
+  en: [
+    'Effortlessly Done',
+    'Every Single Time',
+    'Inside & Out',
+    'You Can Count On',
+    'Professional Grade',
+    'That Lasts All Week',
+  ],
+  es: [
+    'Sin Esfuerzo de tu Parte',
+    'Cada Vez',
+    'Interior y Exterior',
+    'En Que Puedes Confiar',
+    'De Nivel Profesional',
+    'Que Dura Toda la Semana',
+  ]
+};
+
+(function() {
+  const el   = document.getElementById('typewriter-text');
+  let phraseIdx = 0;
+  let charIdx   = 0;
+  let deleting  = false;
+  const SPEED_TYPE = 68;
+  const SPEED_DEL  = 36;
+  const PAUSE_END  = 1800;
+  const PAUSE_START= 320;
+
+  function getLang() { return currentLang || 'en'; }
+  function getPhrases() { return TW_PHRASES[getLang()]; }
+
+  function tick() {
+    const phrases = getPhrases();
+    const phrase  = phrases[phraseIdx % phrases.length];
+
+    if (!deleting) {
+      el.textContent = phrase.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === phrase.length) {
+        deleting = true;
+        setTimeout(tick, PAUSE_END);
+        return;
+      }
+      setTimeout(tick, SPEED_TYPE);
+    } else {
+      el.textContent = phrase.slice(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx++;
+        setTimeout(tick, PAUSE_START);
+        return;
+      }
+      setTimeout(tick, SPEED_DEL);
+    }
+  }
+
+  /* Start after hero fade-in */
+  setTimeout(tick, 900);
+
+  /* When language changes, reset to first phrase */
+  const _setLang = window.setLang;
+  window.setLang = function(lang) {
+    _setLang(lang);
+    phraseIdx = 0; charIdx = 0; deleting = false;
+  };
+})();
 </script>
 </body>
 </html>
